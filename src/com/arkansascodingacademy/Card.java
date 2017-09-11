@@ -91,7 +91,7 @@ public class Card
     {
         boolean bingo = false;
 
-        if (bingoByColumn() || bingoByRow())
+        if (bingoByColumn() || bingoByRow() || bingoByDiagonal())
         {
             bingo = true;
         }
@@ -128,6 +128,29 @@ public class Card
                 square[row][2].isCovered() &&
                 square[row][3].isCovered() &&
                 square[row][4].isCovered())
+            {
+                bingo = true;
+            }
+        }
+        return bingo;
+    }
+
+    private boolean bingoByDiagonal()
+    {
+        boolean bingo = false;
+        {
+            if ((square[0][0].isCovered() &&
+                    square[1][1].isCovered() &&
+                    square[2][2].isCovered() &&
+                    square[3][3].isCovered() &&
+                    square[4][4].isCovered())||
+            (square[0][4].isCovered() &&
+                    square[1][3].isCovered() &&
+                    square[2][2].isCovered() &&
+                    square[3][1].isCovered() &&
+                    square[4][0].isCovered()))
+
+
             {
                 bingo = true;
             }
