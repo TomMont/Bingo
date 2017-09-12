@@ -1,15 +1,26 @@
 package com.arkansascodingacademy;
 
+import java.util.ArrayList;
+
 public class Game
 {
     private Numbers numbers;
-    private Card card;
+    private ArrayList<RandomCard> cards;
 
     public Game()
     {
-        numbers = new Numbers();
-        card = new Card();
+        numbers = new Numbers(1, 75);
+        cards = new ArrayList<>();
+
+        for (int cardNumber = 1; cardNumber <= 10; cardNumber++)
+        {
+            RandomCard card = new RandomCard();
+            cards.add(card);
+        }
+
     }
+
+
 
     public void play()
     {
@@ -18,14 +29,34 @@ public class Game
         while (!bingo)
         {
             int number = numbers.draw();
-            card.play(number);
-            card.print();
-            System.out.println();
+
+            for(RandomCard card : cards)
+            {
+                card.play(number);
+                card.print();
+                System.out.println();
+                if (card.bingo())
+                {
+                    bingo = true;
+                }
+            }
+
+        }
+        printWinningCards();
+    }
+
+    public void printWinningCards()
+    {
+        System.out.println("The winning cards are:");
+        for(RandomCard card :  cards)
+        {
             if (card.bingo())
             {
-                bingo = true;
+                card.print();
+                System.out.println();
             }
         }
+
     }
 
 }

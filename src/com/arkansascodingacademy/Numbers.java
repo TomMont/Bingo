@@ -9,11 +9,11 @@ public class Numbers
     private ArrayList<Integer> calledNumbers;
     private Random random;
 
-    public Numbers()
+    public Numbers(int minNumber, int maxNumber)
     {
         uncalledNumbers = new ArrayList<>();
 
-        for (int i = 1; i <= 75; i++)
+        for (int i = minNumber;  i <= maxNumber; i++)
         {
             uncalledNumbers.add(i);
         }
@@ -51,7 +51,7 @@ public class Numbers
     }
     public static void main(String[] args)
     {
-        Numbers numbers = new Numbers();
+        Numbers numbers = new Numbers(00,75);
         numbers.draw();
         numbers.draw();
         numbers.printCalledNumbers();
